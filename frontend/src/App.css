@@ -2,7 +2,6 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
 .logo {
@@ -47,4 +46,11 @@
 }
 .pointer:hover {
   color: #646cff;
+}
+
+.dashboardContainer{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }

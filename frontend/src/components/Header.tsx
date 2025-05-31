@@ -2,18 +2,10 @@ import { Box, Container, Flex, Image, Menu } from "@mantine/core"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryText from "./PrimaryText"
 import logo from "../assets/image.png"
-import { useState } from "react"
-import PrimaryModal from "./PrimaryModal"
+
 
 const Header = () =>
 {
-    const [ isSignUpModalOpened, setIsSignUpModalOpened ] = useState( false );
-
-    const onToggleSignUpModal = () =>
-    {
-        setIsSignUpModalOpened( !isSignUpModalOpened );
-    }
-
     return (
         <Box>
             <Container fluid p={ 8 } >
@@ -45,15 +37,10 @@ const Header = () =>
                         <PrimaryText pointer text="Free Initiative" size="lg" />
                         <PrimaryText pointer text="Demo" size="lg" />
                         <PrimaryText pointer text="Downlode" size="lg" />
-                        <PrimaryButton size="sm" onClick={ onToggleSignUpModal } text="Log In" />
+                        <PrimaryButton size="sm" text="Log In" />
                     </Flex>
                 </Flex>
             </Container>
-            { isSignUpModalOpened &&
-                <PrimaryModal isOpened={ isSignUpModalOpened } onClose={ onToggleSignUpModal } >
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente excepturi animi laudantium at ipsa ex odit sint vitae esse magni cumque eos, repellendus fugiat illum, incidunt saepe libero. Ducimus, tempore.
-                </PrimaryModal >
-            }
         </Box>
     )
 }
