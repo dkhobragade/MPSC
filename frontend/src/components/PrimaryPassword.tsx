@@ -24,7 +24,7 @@ interface PrimaryPasswordProps
 const PrimaryPassword = ( props: PrimaryPasswordProps ) =>
 {
     return (
-        <PasswordInput size='md' ff={ FONT_FAMILY_INTER } className='custom-wrapper-pass' w="100%" onChange={ props.onChange } label={ props.label } placeholder={ props.placeholder } value={ props.value } />
+        <PasswordInput withAsterisk={ props.withAsterisk } leftSection={ props.leftSection } size='md' ff={ FONT_FAMILY_INTER } className='custom-wrapper-pass' w="100%" onChange={ props.onChange } label={ props.label } placeholder={ props.placeholder } value={ props.value } />
     )
 }
 

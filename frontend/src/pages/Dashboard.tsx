@@ -1,13 +1,38 @@
-import { Box, Container, Modal, rem, Space, Text, } from '@mantine/core'
+import { Box, Container, Modal, rem, SimpleGrid, Space, Stack, Text, } from '@mantine/core'
 import { FONT_FAMILY_PLAYFAIR, } from '../constants/fonts'
 import PrimaryButton from '../components/PrimaryButton'
 import { useDisclosure } from '@mantine/hooks'
+import { IconRocket, IconMail, IconLock, IconPhone } from '@tabler/icons-react'
 import '../App.css'
+import PrimaryInput from '../components/PrimaryInput'
+import PrimaryPassword from '../components/PrimaryPassword'
+import PrimaryText from '../components/PrimaryText'
 
 const Dashboard = () =>
 {
 
     const [ opened, { open, close } ] = useDisclosure( false );
+
+
+    const renderModalContent = () =>
+    {
+        return <Box>
+            <Container p={ rem( 20 ) } >
+                <Stack gap={ rem( 20 ) } >
+                    <SimpleGrid cols={ 2 }>
+                        <PrimaryInput withAsterisk label="First Name" />
+                        <PrimaryInput label="Last Name" />
+                    </SimpleGrid>
+                    <PrimaryInput withAsterisk label="Email" leftSection={ <IconMail /> } />
+                    <PrimaryInput withAsterisk label="Mobile No." leftSection={ <IconPhone /> } />
+                    <PrimaryPassword withAsterisk label="Password" leftSection={ <IconLock /> } />
+                    <PrimaryPassword withAsterisk label="Confirm Password" leftSection={ <IconLock /> } />
+                    <PrimaryButton text='Sign Up' fullWidth leftIcon={ <IconRocket stroke={ 1 } /> } onClick={ close } />
+                    <PrimaryText text="Have an account? Login" />
+                </Stack>
+            </Container>
+        </Box>
+    }
 
     return (
         <Container w='100%' h="100%" mih="100%" fluid className='dashboardContainer' >
@@ -27,11 +52,11 @@ const Dashboard = () =>
                     <Space h={ rem( 10 ) } />
                     <em>What's holding you back?</em>
                 </Text>
-                <PrimaryButton text='Click to Start' onClick={ open } />
+                <PrimaryButton leftIcon={ <IconRocket stroke={ 1 } /> } text='Click to Start' onClick={ open } />
             </Box>
 
-            <Modal opened={ opened } w={ 1000 } h={ 50 } onClose={ close } title="Sign Up" centered size="lg" >
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur atque aperiam sapiente quo voluptatibus animi perspiciatis deleniti amet eum itaque. Quibusdam, magni perferendis excepturi itaque repudiandae exercitationem in officia quae.
+            <Modal opened={ opened } onClose={ close } title="Sign Up" centered size="55rem" >
+                { renderModalContent() }
             </Modal>
 
         </Container >

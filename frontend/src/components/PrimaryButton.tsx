@@ -35,6 +35,7 @@ const PrimaryButton = ( props: PrimaryButtonProps ) =>
             radius={ props.radius || "md" }
             fullWidth={ props.fullWidth || false }
             w={ props.width }
+            leftSection={ props.leftIcon }
         >
             <Text ff={ FONT_FAMILY_INTER } fw={ 600 } >
                 { props.text }
