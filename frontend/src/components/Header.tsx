@@ -1,14 +1,35 @@
-import { Box, Container, Flex, Image, Menu } from "@mantine/core"
+import { Box, Container, Flex, Image, Menu, Modal, Stack } from "@mantine/core"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryText from "./PrimaryText"
 import logo from "../assets/image.png"
 import { useNavigate } from "react-router"
+import { useDisclosure } from "@mantine/hooks"
+import PrimaryInput from "./PrimaryInput"
+import { IconLock, IconPhone } from "@tabler/icons-react"
+import PrimaryPassword from "./PrimaryPassword"
 
 
 const Header = () =>
 {
 
     const navigate = useNavigate()
+    const [ opened, { open, close } ] = useDisclosure( false );
+
+
+    const renderModalContent = () =>
+    {
+        return <Box>
+            <Container>
+                <Stack>
+                    <PrimaryInput label="Mobile No." leftSection={ <IconPhone /> } />
+                    <PrimaryPassword label="Password" leftSection={ <IconLock /> } />
+                    <PrimaryButton text="Log In" />
+                    <PrimaryText text="Forgot Password?" />
+                    <PrimaryText text="Don't have an account? Sign Up" onClick={ open } />
+                </Stack>
+            </Container>
+        </Box>
+    }
 
     return (
         <Box>
@@ -41,10 +62,13 @@ const Header = () =>
                         <PrimaryText pointer text="Free Initiative" size="lg" onClick={ () => navigate( '/freeinitiative' ) } />
                         <PrimaryText pointer text="Demo" size="lg" onClick={ () => navigate( '/demo' ) } />
                         <PrimaryText pointer text="Download" size="lg" onClick={ () => navigate( '/download' ) } />
-                        <PrimaryButton size="sm" text="Log In" />
+                        <PrimaryButton size="sm" text="Log In" onClick={ open } />
                     </Flex>
                 </Flex>
             </Container>
+            <Modal opened={ opened } onClose={ close } title="Log In" centered size="md" >
+                { renderModalContent() }
+            </Modal>
         </Box>
     )
 }
