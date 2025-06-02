@@ -36,7 +36,7 @@ const Header = () =>
                         <PrimaryText pointer text="Test" size="lg" />
                         <PrimaryText pointer text="Free Initiative" size="lg" />
                         <PrimaryText pointer text="Demo" size="lg" />
-                        <PrimaryText pointer text="Downlode" size="lg" />
+                        <PrimaryText pointer text="Download" size="lg" />
                         <PrimaryButton size="sm" text="Log In" />
                     </Flex>
                 </Flex>
