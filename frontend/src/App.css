@@ -40,10 +40,14 @@
   color: #888;
 }
 
+.cursor {
+  cursor: pointer;
+}
 
 .pointer {
   cursor: pointer;
 }
+
 .pointer:hover {
   color: #646cff;
 }

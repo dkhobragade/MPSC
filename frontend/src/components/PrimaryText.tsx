@@ -8,13 +8,14 @@ interface PrimaryTextProps
     className?: string
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     pointer?: boolean
+    onClick?: () => void
 }
 
 
 const PrimaryText = ( props: PrimaryTextProps ) =>
 {
     return (
-        <Text style={ { fontFamily: FONT_FAMILY_PLAYFAIR } } className={ props.pointer ? "pointer" : props.className } size={ props.size || "md" }  >{ props.text }</Text>
+        <Text onClick={ props.onClick } style={ { fontFamily: FONT_FAMILY_PLAYFAIR } } className={ props.pointer ? "pointer" : props.className } size={ props.size || "md" }  >{ props.text }</Text>
     )
 }
 

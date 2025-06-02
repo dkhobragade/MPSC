@@ -2,15 +2,19 @@ import { Box, Container, Flex, Image, Menu } from "@mantine/core"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryText from "./PrimaryText"
 import logo from "../assets/image.png"
+import { useNavigate } from "react-router"
 
 
 const Header = () =>
 {
+
+    const navigate = useNavigate()
+
     return (
         <Box>
             <Container fluid p={ 8 } >
                 <Flex justify="space-between" align="center" >
-                    <Flex align="center">
+                    <Flex align="center" onClick={ () => navigate( "/" ) } className="cursor"  >
                         <Image src={ logo } radius="md" h={ 30 }
                             w="auto"
                             fit="contain" />
@@ -25,18 +29,18 @@ const Header = () =>
                             </Menu.Target>
                             <Menu.Dropdown>
                                 <Menu.Item>
-                                    <PrimaryText text="Pre" size="lg" />
+                                    <PrimaryText text="Pre" size="lg" onClick={ () => navigate( "/course/pre" ) } />
                                 </Menu.Item>
                                 <Menu.Item>
-                                    <PrimaryText text="Mains" size="lg" />
+                                    <PrimaryText text="Mains" size="lg" onClick={ () => navigate( "/course/mains" ) } />
                                 </Menu.Item>
                             </Menu.Dropdown>
                         </Menu>
-                        <PrimaryText pointer text="PYQ" size="lg" />
-                        <PrimaryText pointer text="Test" size="lg" />
-                        <PrimaryText pointer text="Free Initiative" size="lg" />
-                        <PrimaryText pointer text="Demo" size="lg" />
-                        <PrimaryText pointer text="Download" size="lg" />
+                        <PrimaryText pointer text="PYQ" size="lg" onClick={ () => navigate( '/pyq' ) } />
+                        <PrimaryText pointer text="Test" size="lg" onClick={ () => navigate( '/test' ) } />
+                        <PrimaryText pointer text="Free Initiative" size="lg" onClick={ () => navigate( '/freeinitiative' ) } />
+                        <PrimaryText pointer text="Demo" size="lg" onClick={ () => navigate( '/demo' ) } />
+                        <PrimaryText pointer text="Download" size="lg" onClick={ () => navigate( '/download' ) } />
                         <PrimaryButton size="sm" text="Log In" />
                     </Flex>
                 </Flex>

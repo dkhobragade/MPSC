@@ -5,6 +5,8 @@ import { Test } from "../pages/Test"
 import FreeInitiative from "../pages/FreeInitiative "
 import Demo from "../pages/Demo"
 import { Download } from "../pages/Download"
+import Pre from "../pages/Course/Pre"
+import Mains from "../pages/Course/Mains"
 
 const AppRouter = () =>
 {
@@ -12,6 +14,8 @@ const AppRouter = () =>
         <Routes>
             <Route path="/" element={ <Dashboard /> } />
             <Route path="/pyq" element={ <PYQ /> } />
+            <Route path="/course/pre" element={ <Pre /> } />
+            <Route path="/course/mains" element={ <Mains /> } />
             <Route path="/test" element={ <Test /> } />
             <Route path="/freeinitiative" element={ <FreeInitiative /> } />
             <Route path="/demo" element={ <Demo /> } />
