@@ -10,4 +10,4 @@ This project uses **Vite** for blazing-fast frontend development with **React**,
 - ⚡ Vite
 - 🟦 TypeScript
 - 🚀 SWC (Speedy Web Compiler)
-- 🎨 Mantine UI 
+- 🎨 Mantine UI - Spotlight

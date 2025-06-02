@@ -13,13 +13,12 @@ const AppRouter = () =>
     return (
         <Routes>
             <Route path="/" element={ <Dashboard /> } />
-            <Route path="/pyq" element={ <PYQ /> } />
             <Route path="/course/pre" element={ <Pre /> } />
             <Route path="/course/mains" element={ <Mains /> } />
-            <Route path="/test" element={ <Test /> } />
+            <Route path="/pyq/test" element={ <Test /> } />
+            <Route path="/pyq/download" element={ <Download /> } />
             <Route path="/freeinitiative" element={ <FreeInitiative /> } />
             <Route path="/demo" element={ <Demo /> } />
-            <Route path="/download" element={ <Download /> } />
             <Route path="*" element={ <Navigate to="/" replace /> } />
         </Routes >
     )

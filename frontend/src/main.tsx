@@ -5,6 +5,8 @@ import App from './App.tsx'
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import { BrowserRouter } from 'react-router';
+import '@mantine/spotlight/styles.css';
+
 
 createRoot( document.getElementById( 'root' )! ).render(
   <StrictMode>

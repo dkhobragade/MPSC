@@ -1,18 +1,22 @@
-import { Box, Container, Flex, Image, Menu, Modal, Stack } from "@mantine/core"
+import { Box, Container, Flex, Grid, Image, Menu, Modal, Stack } from "@mantine/core"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryText from "./PrimaryText"
 import logo from "../assets/image.png"
 import { useNavigate } from "react-router"
 import { useDisclosure } from "@mantine/hooks"
 import PrimaryInput from "./PrimaryInput"
-import { IconLock, IconPhone } from "@tabler/icons-react"
+import { IconLock, IconPhone, IconSearch } from "@tabler/icons-react"
 import PrimaryPassword from "./PrimaryPassword"
+import { spotlight, Spotlight } from "@mantine/spotlight"
+import { getActions } from "../constants/spotlight"
 
 
 const Header = () =>
 {
 
     const navigate = useNavigate()
+    const actions = getActions( navigate )
+
     const [ opened, { open, close } ] = useDisclosure( false );
 
 
@@ -31,44 +35,84 @@ const Header = () =>
         </Box>
     }
 
+
+    const renderSearchBoxRightSection = () =>
+    {
+        return <Box p="2px 10px" lts="1px" bg="#f3f4f6" c="#374151" bd="1px solid #d1d5db" fw={ 500 } fz={ 13 } ff="monospace" className="rightSection">
+            <span>
+                CTRL + K
+            </span>
+        </Box>
+    }
+
     return (
         <Box>
             <Container fluid p={ 8 } >
-                <Flex justify="space-between" align="center" >
-                    <Flex align="center" onClick={ () => navigate( "/" ) } className="cursor"  >
-                        <Image src={ logo } radius="md" h={ 30 }
-                            w="auto"
-                            fit="contain" />
-                        <PrimaryText text="DKMPSC" size="xl" />
-                    </Flex>
-                    <Flex justify="space-between" gap={ 70 } align="center" >
-                        <Menu trigger="hover" width={ 150 } withArrow arrowPosition="side" arrowSize={ 10 } position="bottom" offset={ -5 } >
-                            <Menu.Target>
-                                <span>
-                                    <PrimaryText pointer text="Course" size="lg" />
-                                </span>
-                            </Menu.Target>
-                            <Menu.Dropdown>
-                                <Menu.Item>
-                                    <PrimaryText text="Pre" size="lg" onClick={ () => navigate( "/course/pre" ) } />
-                                </Menu.Item>
-                                <Menu.Item>
-                                    <PrimaryText text="Mains" size="lg" onClick={ () => navigate( "/course/mains" ) } />
-                                </Menu.Item>
-                            </Menu.Dropdown>
-                        </Menu>
-                        <PrimaryText pointer text="PYQ" size="lg" onClick={ () => navigate( '/pyq' ) } />
-                        <PrimaryText pointer text="Test" size="lg" onClick={ () => navigate( '/test' ) } />
-                        <PrimaryText pointer text="Free Initiative" size="lg" onClick={ () => navigate( '/freeinitiative' ) } />
-                        <PrimaryText pointer text="Demo" size="lg" onClick={ () => navigate( '/demo' ) } />
-                        <PrimaryText pointer text="Download" size="lg" onClick={ () => navigate( '/download' ) } />
-                        <PrimaryButton size="sm" text="Log In" onClick={ open } />
-                    </Flex>
-                </Flex>
+                <Grid align="center"  >
+                    <Grid.Col span={ 5 } >
+                        <Flex align="center" onClick={ () => navigate( "/" ) } className="cursor"  >
+                            <Image src={ logo } radius="md" h={ 30 }
+                                w="auto"
+                                fit="contain" />
+                            <PrimaryText text="DKMPSC" size="xl" />
+                        </Flex>
+                    </Grid.Col>
+                    <Grid.Col span={ 7 } >
+                        <Grid>
+                            <Grid.Col span={ 1 } >
+                                <Menu trigger="hover" width={ 150 } withArrow arrowPosition="side" arrowSize={ 10 } position="bottom" offset={ -5 } >
+                                    <Menu.Target>
+                                        <span>
+                                            <PrimaryText pointer text="Course" size="lg" />
+                                        </span>
+                                    </Menu.Target>
+                                    <Menu.Dropdown>
+                                        <Menu.Item>
+                                            <PrimaryText text="Pre" size="lg" onClick={ () => navigate( "/course/pre" ) } />
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <PrimaryText text="Mains" size="lg" onClick={ () => navigate( "/course/mains" ) } />
+                                        </Menu.Item>
+                                    </Menu.Dropdown>
+                                </Menu>
+                            </Grid.Col>
+                            <Grid.Col span={ 1 } >
+                                <Menu trigger="hover" width={ 150 } withArrow arrowPosition="side" arrowSize={ 10 } position="bottom" offset={ -5 } >
+                                    <Menu.Target>
+                                        <span>
+                                            <PrimaryText pointer text="PYQ" size="lg" />
+                                        </span>
+                                    </Menu.Target>
+                                    <Menu.Dropdown>
+                                        <Menu.Item>
+                                            <PrimaryText text="Test" size="lg" onClick={ () => navigate( "/pyq/test" ) } />
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            <PrimaryText text="Download" size="lg" onClick={ () => navigate( "/pyq/download" ) } />
+                                        </Menu.Item>
+                                    </Menu.Dropdown>
+                                </Menu>
+                            </Grid.Col>
+                            <Grid.Col span={ 2 } >
+                                <PrimaryText pointer text="Free Initiative" size="lg" onClick={ () => navigate( '/freeinitiative' ) } />
+                            </Grid.Col>
+                            <Grid.Col span={ 1 } >
+                                <PrimaryText pointer text="Demo" size="lg" onClick={ () => navigate( '/demo' ) } />
+                            </Grid.Col>
+                            <Grid.Col span={ 5.5 } >
+                                <PrimaryInput onClick={ spotlight.open } onChange={ spotlight.open } rightSection={ renderSearchBoxRightSection() } placeholder="Search" label="" radius="lg" leftSection={ <IconSearch /> } />
+                            </Grid.Col>
+                            <Grid.Col span={ 1 } >
+                                <PrimaryButton size="sm" text="Log In" onClick={ open } />
+                            </Grid.Col>
+                        </Grid>
+                    </Grid.Col>
+                </Grid>
             </Container>
             <Modal opened={ opened } onClose={ close } title="Log In" centered size="md" >
                 { renderModalContent() }
             </Modal>
+            <Spotlight actions={ actions } nothingFound="Nothing Found... " highlightQuery searchProps={ { placeholder: "Search...", leftSection: <IconSearch size={ 20 } stroke={ 1.5 } /> } } />
         </Box>
     )
 }

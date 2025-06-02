@@ -20,13 +20,14 @@ interface PrimaryInputProps
     fullWidth?: boolean;
     withAsterisk?: boolean;
     type?: "text" | "email" | "password" | "number" | "tel" | "url";
+    onClick?: ( event: React.MouseEvent<HTMLInputElement> ) => void;
 }
 
 const PrimaryInput = ( props: PrimaryInputProps ) =>
 {
     return (
         <Input.Wrapper className="custom-wrapper" ff={ FONT_FAMILY_INTER } size="md" w='100%' label={ props.label } withAsterisk={ props.withAsterisk } >
-            <Input leftSection={ props.leftSection } type={ props.type } onChange={ props.onChange } size={ props.size } placeholder={ props.placeholder } radius={ props.radius } value={ props.value } />
+            <Input onClick={ props.onClick } rightSection={ props.rightSection } leftSection={ props.leftSection } type={ props.type } onChange={ props.onChange } size={ props.size } placeholder={ props.placeholder } radius={ props.radius } value={ props.value } />
         </Input.Wrapper>
     )
 }
