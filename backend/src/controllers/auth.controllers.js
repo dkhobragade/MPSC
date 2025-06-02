@@ -59,8 +59,46 @@ export const singUp = async (req, res) => {
     }
 }
 
-export const login = (req, res) => {
-    res.send("singup Page");
+export const login = async (req, res) => {
+
+    const {mobile, password} = req.body
+
+    try {
+
+        const user = await User.findOne({ mobile });
+
+        if (!user) {
+            return res.status(400).json({
+                message: "User not found with this mobile number"
+            });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            return res.status(400).json({
+                message: "Invalid password"
+            });
+        }
+
+        generateToken(user._id, res);
+        res.status(200).json({
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            mobile: user.mobile,
+        });
+
+
+    } catch (error) {
+        console.log("Error in login",error.message)
+        res.status(500).json({
+            message:'Internal Server Error'
+        })
+
+    }
+
 }
 
 export const logout = (req, res) => {
