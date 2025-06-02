@@ -3,10 +3,10 @@ import { FONT_FAMILY_PLAYFAIR, } from '../constants/fonts'
 import PrimaryButton from '../components/PrimaryButton'
 import { useDisclosure } from '@mantine/hooks'
 import { IconRocket, IconMail, IconLock, IconPhone } from '@tabler/icons-react'
-import '../App.css'
 import PrimaryInput from '../components/PrimaryInput'
 import PrimaryPassword from '../components/PrimaryPassword'
 import PrimaryText from '../components/PrimaryText'
+import '../App.css'
 
 const Dashboard = () =>
 {

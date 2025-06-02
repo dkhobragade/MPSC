@@ -11,7 +11,7 @@ function App ()
       <AppShell.Header>
         <Header />
       </AppShell.Header>
-      <AppShell.Main mt="10%" w='100%' h="100%" mih="100%" pt={ `calc(${ rem( 20 ) } + var(--mantine-spacing-md))` }>
+      <AppShell.Main w='100%' h="100%" mih="100%" pt={ `calc(${ rem( 20 ) } + var(--mantine-spacing-md))` }>
         <AppRouter />
       </AppShell.Main>
     </AppShell>
