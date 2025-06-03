@@ -1,4 +1,4 @@
-import { Box, Container, Image, Modal, rem, SimpleGrid, Space, Stack, Text, } from '@mantine/core'
+import { Box, Container, Modal, rem, SimpleGrid, Space, Stack, Text, } from '@mantine/core'
 import { FONT_FAMILY_PLAYFAIR, } from '../constants/fonts'
 import PrimaryButton from '../components/PrimaryButton'
 import { useDisclosure } from '@mantine/hooks'
@@ -6,16 +6,14 @@ import { IconRocket, IconMail, IconLock, IconPhone } from '@tabler/icons-react'
 import PrimaryInput from '../components/PrimaryInput'
 import PrimaryPassword from '../components/PrimaryPassword'
 import PrimaryText from '../components/PrimaryText'
-import DirectionImg from '../assets/direction.svg'
-import LearningImg from '../assets/learning.svg'
-import bg from '../assets/bg.svg'
+import bg from '../assets/bg1.svg'
 import '../App.css'
+import { Footer } from '../components/Footer'
 
 const Dashboard = () =>
 {
 
     const [ opened, { open, close } ] = useDisclosure( false );
-
 
     const renderModalContent = () =>
     {
@@ -59,12 +57,11 @@ const Dashboard = () =>
                     </Text>
                     <PrimaryButton leftIcon={ <IconRocket stroke={ 1 } /> } text='Click to Start' onClick={ open } />
                 </Box>
-
                 <Modal opened={ opened } onClose={ close } title="Sign Up" centered size="55rem" >
                     { renderModalContent() }
                 </Modal>
-
             </Container >
+            {/* <Footer /> */ }
         </>
     )
 }

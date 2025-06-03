@@ -1,22 +1,21 @@
-import { Box, Container, Flex, Grid, Image, Menu, Modal, Stack } from "@mantine/core"
+import { Box, Container, Flex, Grid, Image, Menu, Modal, Stack, Burger, Drawer } from "@mantine/core"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryText from "./PrimaryText"
 import logo from "../assets/image.png"
 import { useNavigate } from "react-router"
 import { useDisclosure } from "@mantine/hooks"
 import PrimaryInput from "./PrimaryInput"
-import { IconLock, IconPhone, IconSearch } from "@tabler/icons-react"
+import { IconCaretDownFilled, IconLock, IconPhone, IconSearch } from "@tabler/icons-react"
 import PrimaryPassword from "./PrimaryPassword"
 import { spotlight, Spotlight } from "@mantine/spotlight"
 import { getActions } from "../constants/spotlight"
-
 
 const Header = () =>
 {
 
     const navigate = useNavigate()
     const actions = getActions( navigate )
-
+    const [ openDrawer, { toggle } ] = useDisclosure( false );
     const [ opened, { open, close } ] = useDisclosure( false );
 
 
@@ -57,61 +56,96 @@ const Header = () =>
                             <PrimaryText text="DKMPSC" size="xl" />
                         </Flex>
                     </Grid.Col>
-                    <Grid.Col span={ 7 } >
-                        <Grid>
-                            <Grid.Col span={ 1 } >
-                                <Menu trigger="hover" width={ 150 } withArrow arrowPosition="side" arrowSize={ 10 } position="bottom" offset={ -5 } >
-                                    <Menu.Target>
-                                        <span>
-                                            <PrimaryText pointer text="Course" size="lg" />
-                                        </span>
-                                    </Menu.Target>
-                                    <Menu.Dropdown>
-                                        <Menu.Item>
-                                            <PrimaryText text="Pre" size="lg" onClick={ () => navigate( "/course/pre" ) } />
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            <PrimaryText text="Mains" size="lg" onClick={ () => navigate( "/course/mains" ) } />
-                                        </Menu.Item>
-                                    </Menu.Dropdown>
-                                </Menu>
-                            </Grid.Col>
-                            <Grid.Col span={ 1 } >
-                                <Menu trigger="hover" width={ 150 } withArrow arrowPosition="side" arrowSize={ 10 } position="bottom" offset={ -5 } >
-                                    <Menu.Target>
-                                        <span>
-                                            <PrimaryText pointer text="PYQ" size="lg" />
-                                        </span>
-                                    </Menu.Target>
-                                    <Menu.Dropdown>
-                                        <Menu.Item>
-                                            <PrimaryText text="Test" size="lg" onClick={ () => navigate( "/pyq/test" ) } />
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            <PrimaryText text="Download" size="lg" onClick={ () => navigate( "/pyq/download" ) } />
-                                        </Menu.Item>
-                                    </Menu.Dropdown>
-                                </Menu>
-                            </Grid.Col>
-                            <Grid.Col span={ 2 } >
-                                <PrimaryText pointer text="Free Initiative" size="lg" onClick={ () => navigate( '/freeinitiative' ) } />
-                            </Grid.Col>
-                            <Grid.Col span={ 1 } >
-                                <PrimaryText pointer text="Demo" size="lg" onClick={ () => navigate( '/demo' ) } />
-                            </Grid.Col>
-                            <Grid.Col span={ 5.5 } >
-                                <PrimaryInput onClick={ spotlight.open } onChange={ spotlight.open } rightSection={ renderSearchBoxRightSection() } placeholder="Search" label="" radius="lg" leftSection={ <IconSearch /> } />
-                            </Grid.Col>
-                            <Grid.Col span={ 1 } >
-                                <PrimaryButton size="sm" text="Log In" onClick={ open } />
-                            </Grid.Col>
-                        </Grid>
+                    <Grid.Col span={ 7 }>
+                        <Flex justify="end" align="center" w="100%">
+                            <Box w="100%" display={ { base: "none", md: "block" } }>
+                                <Grid>
+                                    <Grid.Col span={ 1.2 }>
+                                        <Menu trigger="hover" width={ 150 } withArrow arrowPosition="side" arrowSize={ 10 } position="bottom" offset={ -5 }>
+                                            <Menu.Target>
+                                                <Flex justify="flex-start" align="flex-start" direction="row">
+                                                    <PrimaryText pointer text="Course" size="lg" />
+                                                    <IconCaretDownFilled style={ { marginTop: 2 } } />
+                                                </Flex>
+                                            </Menu.Target>
+                                            <Menu.Dropdown>
+                                                <Menu.Item>
+                                                    <PrimaryText text="Pre" size="lg" onClick={ () => navigate( "/course/pre" ) } />
+                                                </Menu.Item>
+                                                <Menu.Item>
+                                                    <PrimaryText text="Mains" size="lg" onClick={ () => navigate( "/course/mains" ) } />
+                                                </Menu.Item>
+                                            </Menu.Dropdown>
+                                        </Menu>
+                                    </Grid.Col>
+                                    <Grid.Col span={ 1.2 }>
+                                        <Menu trigger="hover" width={ 150 } withArrow arrowPosition="side" arrowSize={ 10 } position="bottom" offset={ -5 }>
+                                            <Menu.Target>
+                                                <Flex justify="flex-start" align="flex-start" direction="row">
+                                                    <PrimaryText pointer text="PYQ" size="lg" />
+                                                    <IconCaretDownFilled style={ { marginTop: 2 } } />
+                                                </Flex>
+                                            </Menu.Target>
+                                            <Menu.Dropdown>
+                                                <Menu.Item>
+                                                    <PrimaryText text="Test" size="lg" onClick={ () => navigate( "/pyq/test" ) } />
+                                                </Menu.Item>
+                                                <Menu.Item>
+                                                    <PrimaryText text="Download" size="lg" onClick={ () => navigate( "/pyq/download" ) } />
+                                                </Menu.Item>
+                                            </Menu.Dropdown>
+                                        </Menu>
+                                    </Grid.Col>
+                                    <Grid.Col span={ 2 }>
+                                        <PrimaryText pointer text="Free Initiative" size="lg" onClick={ () => navigate( "/freeinitiative" ) } />
+                                    </Grid.Col>
+                                    <Grid.Col span={ 1 }>
+                                        <PrimaryText pointer text="Demo" size="lg" onClick={ () => navigate( "/demo" ) } />
+                                    </Grid.Col>
+                                    <Grid.Col span={ 5 }>
+                                        <PrimaryInput
+                                            onClick={ spotlight.open }
+                                            onChange={ spotlight.open }
+                                            rightSection={ renderSearchBoxRightSection() }
+                                            placeholder="Search"
+                                            label=""
+                                            radius="lg"
+                                            leftSection={ <IconSearch /> }
+                                        />
+                                    </Grid.Col>
+                                    <Grid.Col span={ 1 }>
+                                        <PrimaryButton size="sm" text="Log In" onClick={ open } />
+                                    </Grid.Col>
+                                </Grid>
+                            </Box>
+
+                            {/* Burger menu (visible only on mobile) */ }
+                            <Box display={ { base: "block", md: "none" } }>
+                                <Burger opened={ openDrawer } onClick={ toggle } aria-label="Open navigation" />
+                            </Box>
+                        </Flex>
                     </Grid.Col>
                 </Grid>
             </Container>
             <Modal opened={ opened } onClose={ close } title="Log In" centered size="md" >
                 { renderModalContent() }
             </Modal>
+            <Drawer
+                opened={ openDrawer }
+                onClose={ toggle }
+                title="Menu"
+                padding="md"
+                position="right"
+                size="md"
+            >
+                <Stack>
+                    <PrimaryText pointer text="Course" size="lg" onClick={ () => { navigate( "/course/pre" ); toggle(); } } />
+                    <PrimaryText pointer text="PYQ" size="lg" onClick={ () => { navigate( "/pyq/test" ); toggle(); } } />
+                    <PrimaryText pointer text="Free Initiative" size="lg" onClick={ () => { navigate( '/freeinitiative' ); toggle(); } } />
+                    <PrimaryText pointer text="Demo" size="lg" onClick={ () => { navigate( '/demo' ); toggle(); } } />
+                    <PrimaryButton size="sm" text="Log In" onClick={ () => { open(); toggle(); } } />
+                </Stack>
+            </Drawer>
             <Spotlight actions={ actions } nothingFound="Nothing Found... " highlightQuery searchProps={ { placeholder: "Search...", leftSection: <IconSearch size={ 20 } stroke={ 1.5 } /> } } />
         </Box>
     )
