@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from "react-router"
 import Dashboard from "../pages/Dashboard"
-import { Test } from "../pages/Test"
+import { Test } from "../pages/PYQ/Test"
 import FreeInitiative from "../pages/FreeInitiative "
 import Demo from "../pages/Demo"
-import { Download } from "../pages/Download"
+import { Download } from "../pages/PYQ/Download"
 import Pre from "../pages/Course/Pre"
 import Mains from "../pages/Course/Mains"
 

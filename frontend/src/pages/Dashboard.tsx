@@ -7,8 +7,9 @@ import PrimaryInput from '../components/PrimaryInput'
 import PrimaryPassword from '../components/PrimaryPassword'
 import PrimaryText from '../components/PrimaryText'
 import bg from '../assets/bg1.svg'
+import HighlightsSection from './Sections/HighlightsSection'
+import WhyChooseUsSection from './Sections/WhyChooseUsSection'
 import '../App.css'
-import { Footer } from '../components/Footer'
 
 const Dashboard = () =>
 {
@@ -61,6 +62,8 @@ const Dashboard = () =>
                     { renderModalContent() }
                 </Modal>
             </Container >
+            <HighlightsSection />
+            <WhyChooseUsSection />
             {/* <Footer /> */ }
         </>
     )

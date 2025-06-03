@@ -1,8 +1,8 @@
 import { Box, Center, Container, Grid, Image, Stack } from '@mantine/core'
-import TestImg from '../assets/test.svg'
-import PrimarySelect from '../components/PrimarySelect'
-import PrimaryButton from '../components/PrimaryButton'
-import { TestType } from '../constants/type'
+import TestImg from '../../assets/test.svg'
+import PrimarySelect from '../../components/PrimarySelect'
+import PrimaryButton from '../../components/PrimaryButton'
+import { TestType } from '../../constants/type'
 
 export const Test = () =>
 {

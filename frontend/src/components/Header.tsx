@@ -18,7 +18,6 @@ const Header = () =>
     const [ openDrawer, { toggle } ] = useDisclosure( false );
     const [ opened, { open, close } ] = useDisclosure( false );
 
-
     const renderModalContent = () =>
     {
         return <Box>
