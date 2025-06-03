@@ -1,7 +1,7 @@
-import { AppShell, rem } from '@mantine/core'
-import './App.css'
+import { AppShell } from '@mantine/core'
 import Header from './components/Header'
 import AppRouter from './router/AppRouter'
+import './App.css'
 
 function App ()
 {
@@ -11,10 +11,10 @@ function App ()
       <AppShell.Header>
         <Header />
       </AppShell.Header>
-      <AppShell.Main w='100%' h="100%" mih="100%" pt={ `calc(${ rem( 20 ) } + var(--mantine-spacing-md))` }>
+      <AppShell.Main w='100%' h="100%" mih="100%" >
         <AppRouter />
       </AppShell.Main>
-    </AppShell>
+    </AppShell >
   )
 }
 
