@@ -1,14 +1,15 @@
-import { Box, Container, Flex, Grid, Image, Menu, Modal, Stack, Burger, Drawer, Avatar, Popover } from "@mantine/core"
+import { useNavigate } from "react-router"
+import { useDisclosure } from "@mantine/hooks"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryText from "./PrimaryText"
 import logo from "../assets/image.png"
-import { useNavigate } from "react-router"
-import { useDisclosure } from "@mantine/hooks"
 import PrimaryInput from "./PrimaryInput"
-import { IconBook2, IconCaretDownFilled, IconLock, IconLogout, IconPhone, IconSearch, IconUser } from "@tabler/icons-react"
 import PrimaryPassword from "./PrimaryPassword"
 import { spotlight, Spotlight } from "@mantine/spotlight"
 import { getActions } from "../constants/spotlight"
+import { drawerContent, spotlightCTRLButton } from "../helper/helper"
+import { IconCaretDownFilled, IconLock, IconPhone, IconSearch } from "@tabler/icons-react"
+import { Box, Container, Flex, Grid, Image, Menu, Modal, Stack, Burger, Drawer, Avatar, Popover } from "@mantine/core"
 
 const Header = () =>
 {
@@ -23,64 +24,21 @@ const Header = () =>
         return <Box>
             <Container>
                 <Stack>
-                    <PrimaryInput label="Mobile No." leftSection={ <IconPhone /> } />
+                    <PrimaryInput label="Email / Mobile No." leftSection={ <IconPhone /> } />
                     <PrimaryPassword label="Password" leftSection={ <IconLock /> } />
                     <PrimaryButton text="Log In" />
-                    <PrimaryText text="Forgot Password?" />
-                    <PrimaryText text="Don't have an account? Sign Up" onClick={ open } />
+                    <PrimaryText text="Forgot Password?" className="pointer" />
+                    <Grid>
+                        <Grid.Col span={ 6 }>
+                            <PrimaryText text="Don't have an account?" onClick={ open } />
+                        </Grid.Col>
+                        <Grid.Col span={ 6 }>
+                            <PrimaryText text="Sign Up" className="pointer" textDecoration="underline" />
+                        </Grid.Col>
+                    </Grid>
                 </Stack>
             </Container>
         </Box>
-    }
-
-
-    const renderSearchBoxRightSection = () =>
-    {
-        return <Box p="2px 10px" lts="1px" bg="#f3f4f6" c="#374151" bd="1px solid #d1d5db" fw={ 500 } fz={ 13 } ff="monospace" className="rightSection">
-            <span>
-                CTRL + K
-            </span>
-        </Box>
-    }
-
-
-    const renderPopoverContent = () =>
-    {
-        return <Box>
-            <Stack>
-                <Box className="pointer">
-                    <Grid onClick={ () => navigate( "/profile" ) } >
-                        <Grid.Col span={ 2 }>
-                            <IconUser />
-                        </Grid.Col>
-                        <Grid.Col span={ 10 }>
-                            My Profile
-                        </Grid.Col>
-                    </Grid>
-                </Box>
-                <Box className="pointer">
-                    <Grid onClick={ () => navigate( "/mycourse" ) } >
-                        <Grid.Col span={ 2 }>
-                            <IconBook2 />
-                        </Grid.Col>
-                        <Grid.Col span={ 10 }>
-                            My Courses
-                        </Grid.Col>
-                    </Grid>
-                </Box>
-                <Box className="pointer">
-                    <Grid>
-                        <Grid.Col span={ 2 }>
-                            <IconLogout />
-                        </Grid.Col>
-                        <Grid.Col span={ 10 }>
-                            Logout
-                        </Grid.Col>
-                    </Grid>
-                </Box>
-            </Stack>
-        </Box>
-
     }
 
     return (
@@ -145,7 +103,7 @@ const Header = () =>
                                         <PrimaryInput
                                             onClick={ spotlight.open }
                                             onChange={ spotlight.open }
-                                            rightSection={ renderSearchBoxRightSection() }
+                                            rightSection={ spotlightCTRLButton() }
                                             placeholder="Search"
                                             label=""
                                             radius="lg"
@@ -153,15 +111,15 @@ const Header = () =>
                                         />
                                     </Grid.Col>
                                     <Grid.Col span={ 1 }>
-                                        <Popover width={ 200 } position="bottom" shadow="md" >
+                                        {/* <Popover width={ 200 } position="bottom" shadow="md" >
                                             <Popover.Target>
                                                 <Avatar color="cyan" radius="xl" className="pointer" >DK</Avatar>
                                             </Popover.Target>
                                             <Popover.Dropdown>
-                                                { renderPopoverContent() }
+                                                { loginPopoverContent( navigate ) }
                                             </Popover.Dropdown>
-                                        </Popover>
-                                        {/* <PrimaryButton size="sm" text="Log In" onClick={ open } /> */ }
+                                        </Popover> */}
+                                        <PrimaryButton size="sm" text="Log In" onClick={ open } />
                                     </Grid.Col>
                                 </Grid>
                             </Box>
@@ -177,22 +135,7 @@ const Header = () =>
             <Modal opened={ opened } onClose={ close } title="Log In" centered size="md" >
                 { renderModalContent() }
             </Modal>
-            <Drawer
-                opened={ openDrawer }
-                onClose={ toggle }
-                title="Menu"
-                padding="md"
-                position="right"
-                size="md"
-            >
-                <Stack>
-                    <PrimaryText pointer text="Course" size="lg" onClick={ () => { navigate( "/course/pre" ); toggle(); } } />
-                    <PrimaryText pointer text="PYQ" size="lg" onClick={ () => { navigate( "/pyq/test" ); toggle(); } } />
-                    <PrimaryText pointer text="Free Initiative" size="lg" onClick={ () => { navigate( '/freeinitiative' ); toggle(); } } />
-                    <PrimaryText pointer text="Demo" size="lg" onClick={ () => { navigate( '/demo' ); toggle(); } } />
-                    <PrimaryButton size="sm" text="Log In" onClick={ () => { open(); toggle(); } } />
-                </Stack>
-            </Drawer>
+            { drawerContent( openDrawer, toggle, navigate ) }
             <Spotlight actions={ actions } nothingFound="Nothing Found... " highlightQuery searchProps={ { placeholder: "Search...", leftSection: <IconSearch size={ 20 } stroke={ 1.5 } /> } } />
         </Box>
     )

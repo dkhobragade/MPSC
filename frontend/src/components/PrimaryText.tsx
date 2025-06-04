@@ -9,13 +9,14 @@ interface PrimaryTextProps
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     pointer?: boolean
     onClick?: () => void
+    textDecoration?: "auto" | "blink" | "dashed" | "dotted" | "double" | "overline" | "underline"
 }
 
 
 const PrimaryText = ( props: PrimaryTextProps ) =>
 {
     return (
-        <Text onClick={ props.onClick } style={ { fontFamily: FONT_FAMILY_PLAYFAIR } } className={ props.pointer ? "pointer" : props.className } size={ props.size || "md" }  >{ props.text }</Text>
+        <Text td={ props.textDecoration } onClick={ props.onClick } style={ { fontFamily: FONT_FAMILY_PLAYFAIR } } className={ props.pointer ? "pointer" : props.className } size={ props.size || "md" }  >{ props.text }</Text>
     )
 }
 

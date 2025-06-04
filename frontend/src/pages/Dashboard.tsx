@@ -1,4 +1,4 @@
-import { Box, Container, Modal, rem, SimpleGrid, Space, Stack, Text, } from '@mantine/core'
+import { Box, Container, Grid, Modal, rem, SimpleGrid, Space, Stack, Text, } from '@mantine/core'
 import { FONT_FAMILY_PLAYFAIR, } from '../constants/fonts'
 import PrimaryButton from '../components/PrimaryButton'
 import { useDisclosure } from '@mantine/hooks'
@@ -30,7 +30,14 @@ const Dashboard = () =>
                     <PrimaryPassword withAsterisk label="Password" leftSection={ <IconLock /> } />
                     <PrimaryPassword withAsterisk label="Confirm Password" leftSection={ <IconLock /> } />
                     <PrimaryButton text='Sign Up' fullWidth leftIcon={ <IconRocket stroke={ 1 } /> } onClick={ close } />
-                    <PrimaryText text="Have an account? Login" />
+                    <Grid>
+                        <Grid.Col span={ 2 }>
+                            <PrimaryText text="Have an account?" />
+                        </Grid.Col>
+                        <Grid.Col span={ 10 }>
+                            <PrimaryText text="Login" className='pointer' textDecoration="underline" />
+                        </Grid.Col>
+                    </Grid>
                 </Stack>
             </Container>
         </Box>
