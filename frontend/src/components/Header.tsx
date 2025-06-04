@@ -1,11 +1,11 @@
-import { Box, Container, Flex, Grid, Image, Menu, Modal, Stack, Burger, Drawer } from "@mantine/core"
+import { Box, Container, Flex, Grid, Image, Menu, Modal, Stack, Burger, Drawer, Avatar, Popover } from "@mantine/core"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryText from "./PrimaryText"
 import logo from "../assets/image.png"
 import { useNavigate } from "react-router"
 import { useDisclosure } from "@mantine/hooks"
 import PrimaryInput from "./PrimaryInput"
-import { IconCaretDownFilled, IconLock, IconPhone, IconSearch } from "@tabler/icons-react"
+import { IconBook2, IconCaretDownFilled, IconLock, IconLogout, IconPhone, IconSearch, IconUser } from "@tabler/icons-react"
 import PrimaryPassword from "./PrimaryPassword"
 import { spotlight, Spotlight } from "@mantine/spotlight"
 import { getActions } from "../constants/spotlight"
@@ -41,6 +41,46 @@ const Header = () =>
                 CTRL + K
             </span>
         </Box>
+    }
+
+
+    const renderPopoverContent = () =>
+    {
+        return <Box>
+            <Stack>
+                <Box className="pointer">
+                    <Grid onClick={ () => navigate( "/profile" ) } >
+                        <Grid.Col span={ 2 }>
+                            <IconUser />
+                        </Grid.Col>
+                        <Grid.Col span={ 10 }>
+                            My Profile
+                        </Grid.Col>
+                    </Grid>
+                </Box>
+                <Box className="pointer">
+                    <Grid onClick={ () => navigate( "/mycourse" ) } >
+                        <Grid.Col span={ 2 }>
+                            <IconBook2 />
+                        </Grid.Col>
+                        <Grid.Col span={ 10 }>
+                            My Courses
+                        </Grid.Col>
+                    </Grid>
+                </Box>
+                <Box className="pointer">
+                    <Grid>
+                        <Grid.Col span={ 2 }>
+                            <IconLogout />
+                        </Grid.Col>
+                        <Grid.Col span={ 10 }>
+                            Logout
+                        </Grid.Col>
+                    </Grid>
+                </Box>
+            </Stack>
+        </Box>
+
     }
 
     return (
@@ -113,7 +153,15 @@ const Header = () =>
                                         />
                                     </Grid.Col>
                                     <Grid.Col span={ 1 }>
-                                        <PrimaryButton size="sm" text="Log In" onClick={ open } />
+                                        <Popover width={ 200 } position="bottom" shadow="md" >
+                                            <Popover.Target>
+                                                <Avatar color="cyan" radius="xl" className="pointer" >DK</Avatar>
+                                            </Popover.Target>
+                                            <Popover.Dropdown>
+                                                { renderPopoverContent() }
+                                            </Popover.Dropdown>
+                                        </Popover>
+                                        {/* <PrimaryButton size="sm" text="Log In" onClick={ open } /> */ }
                                     </Grid.Col>
                                 </Grid>
                             </Box>
